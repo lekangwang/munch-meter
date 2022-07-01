@@ -1,22 +1,20 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View, StatusBar } from "react-native";
+import Entry from "./screens/registration/Entry";
+import { COLOR_BASE } from "./assets/colors";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Munch Meter</Text>
+    <View style={styles.body}>
+      <Entry />
       <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100%",
+  body: {
     width: "100%",
+    height: "100%",
+    backgroundColor: COLOR_BASE,
   },
 });
