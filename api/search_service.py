@@ -19,7 +19,9 @@ def get_name(entry):
     return entry.get("product_name")
 
 def get_serving_size(entry):
-    return entry.get("serving_quantity")
+    if entry.get("serving_quantity") != None:
+        return round(float(entry.get("serving_quantity")))
+    return None
 
 def get_serving_unit(entry):
     if not entry.get("serving_size"):
@@ -41,7 +43,7 @@ def get_calories(nutrients):
         calories = kj_to_kcal(nutrients.get("energy-kj_serving"))
     else:
         return None
-    return calories
+    return round(float(calories))
 
 def get_calories_unit(nutrients):
     if nutrients.get("energy-kcal_serving") != None or nutrients.get("energy-kj_serving") != None:
@@ -50,17 +52,17 @@ def get_calories_unit(nutrients):
 
 def get_proteins(nutrients):
     if nutrients.get("proteins_serving") != None:
-        return (nutrients.get("proteins_serving"), nutrients.get("proteins_unit"))
+        return (round(float(nutrients.get("proteins_serving"))), nutrients.get("proteins_unit"))
     return (None, None)
 
 def get_fats(nutrients):
     if nutrients.get("fat_serving") != None:
-        return (nutrients.get("fat_serving"), nutrients.get("fat_unit")) 
+        return (round(float(nutrients.get("fat_serving"))), nutrients.get("fat_unit")) 
     return (None, None)
 
 def get_carbs(nutrients):
     if nutrients.get("carbohydrates_serving") != None:
-        return (nutrients.get("carbohydrates_serving"), nutrients.get("carbohydrates_unit")) 
+        return (round(float(nutrients.get("carbohydrates_serving"))), nutrients.get("carbohydrates_unit"))
     return (None, None)
 
 def verify_filtered_entry(filtered_entry):
