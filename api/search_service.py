@@ -1,5 +1,5 @@
 from curses.ascii import isalnum, isalpha
-from flask import Blueprint, request
+from flask import Blueprint, request, abort
 from dotenv import load_dotenv
 import openfoodfacts
 import requests as r
@@ -119,4 +119,4 @@ def main():
     search_term = request.args.get("query")
     page_size = request.args.get("page_size")
     search_results = query_food_api(search_term, page_size)
-    return search_results
+    return search_results if len(search_results) > 0 else abort(404)
