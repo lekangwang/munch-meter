@@ -9,7 +9,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  // Error Handling TODO
   const [showEmailError, setShowEmailError] = useState(false); // REDUX
+  const [showEmptyFieldError, setShowEmptyFieldError] = useState(false); // REDUX
 
   const loginVerificationHandler = async () => {
     // Check that email is in correct format
