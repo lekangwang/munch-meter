@@ -1,11 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import { H1 } from "./screens/util/Typography";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <H1>munch meter</H1>
+      <Text>munch meter</Text>
       <StatusBar style="auto" />
     </View>
   );
