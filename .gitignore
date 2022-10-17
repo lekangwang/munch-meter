@@ -13,6 +13,9 @@ web-build/
 __pycache__/
 venv/
 api/.env
+.env
+env.js
+yarn.lock
 
 # macOS
 .DS_Store

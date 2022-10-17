@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, Button } from "react-native";
 import { palette } from "./util/Palette";
 import { H1, P } from "./util/Typography";
 import axios from "axios";
 import * as EmailValidator from "email-validator";
+import { env } from "../env";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -14,6 +15,7 @@ export default function Register() {
   const [fats, setFats] = useState(0);
   const [carbs, setCarbs] = useState(0);
   const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
 
   // Error Handling TODO
   const [showEmailError, setShowEmailError] = useState(false); // REDUX
@@ -25,15 +27,22 @@ export default function Register() {
   const [showEmptyFieldError, setShowEmptyFieldError] = useState(false); // REDUX
 
   const createAccountHandler = async () => {
-    const res = await axios.post("", {
-      email,
-      password,
-      country,
-      calories,
-      proteins,
-      fats,
-      carbs,
-    });
+    const res = await axios
+      .post(`${env.FLASK_BASE_URL}/register`, {
+        email,
+        password,
+        country,
+        city,
+        calories,
+        proteins,
+        fats,
+        carbs,
+      })
+      .then((res) => res.json())
+      .then((res) => console.log(`this is res: ${res}`))
+      .catch((err) => {
+        console.log(err.response);
+      });
 
     // Based on results, if email or username is taken, API will tell me
     // Return 202 if ok and the user should be logged in, redirect to homepage
@@ -55,12 +64,13 @@ export default function Register() {
             placeholder="Password"
             onChangeText={(pw) => setPassword(pw)}
             value={
-              showPassword
-                ? password
-                : password
-                    .split("")
-                    .map((c) => "*")
-                    .join("")
+              // showPassword
+              //   ? password
+              //   : password
+              //       .split("")
+              //       .map((c) => "*")
+              //       .join("")
+              password
             }
           />
           <Button
@@ -105,6 +115,11 @@ export default function Register() {
             onChangeText={(country) => setCountry(country)}
             value={country}
           />
+          <TextInput
+            placeholder="City (fullname)"
+            onChangeText={(city) => setCity(city)}
+            value={city}
+          />
         </View>
         <View>
           <Button
@@ -118,6 +133,8 @@ export default function Register() {
     </View>
   );
 }
+
+// TODO: Must check if city and country work with TimezoneDB API
 
 const styles = StyleSheet.create({
   container: {

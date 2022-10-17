@@ -9,12 +9,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.6",
     "axios": "^1.1.2",
     "email-validator": "^2.0.4",
     "expo": "~46.0.9",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
-    "react-native": "0.69.5"
+    "react-circular-progressbar": "^2.1.0",
+    "react-native": "0.69.5",
+    "react-native-progress-circle": "^2.1.0",
+    "react-native-progress-circle-updated": "^2.2.1",
+    "react-redux": "^8.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

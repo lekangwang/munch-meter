@@ -5,12 +5,8 @@ from flask import Flask, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
-# Services
-from search_service import search_service
-
 # Utility libraries
 from dotenv import load_dotenv
-import bcrypt
 
 # Backend setup
 load_dotenv()
@@ -30,16 +26,21 @@ db.create_all()
 db.session.commit()
 login_manager.init_app(app)
 
+# Services
+from search_service import search_service
+from auth import auth
+
 # Services registration
 app.register_blueprint(search_service)
+app.register_blueprint(auth)
 
 @app.route("/")
 def test():
-    new_user = User("123@sesamestreet.ca", "ass", "america", "2000", "200", "100", "50")
+    new_user = User("123@sesamestreet.ca", "password", "america", "2000", "200", "100", "50")
     db.session.add(new_user)
     db.session.commit()
     flash("New User Added")
-    print(new_user.check_password("ass"))
+    print(new_user.check_password("password"))
     return (f"User created!: {str(new_user)}", 200)
 
 if __name__ == "__main__":

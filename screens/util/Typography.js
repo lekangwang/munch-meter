@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
   },
   h5: {
     fontSize: 12,
-    color: palette.lightText,
+    color: palette.text,
   },
 });
