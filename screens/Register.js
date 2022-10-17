@@ -38,9 +38,9 @@ export default function Register() {
         fats,
         carbs,
       })
-      .then((res) => res.json())
-      .then((res) => console.log(`this is res: ${res}`))
+      .then((res) => console.log(res.data))
       .catch((err) => {
+        console.log("big facts");
         console.log(err.response);
       });
 

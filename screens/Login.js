@@ -2,8 +2,8 @@ import { useState } from "react";
 import { StyleSheet, View, TextInput, Button } from "react-native";
 import { palette } from "./util/Palette";
 import { H1, P } from "./util/Typography";
-import axios from "axios";
 import * as EmailValidator from "email-validator";
+import axios from "axios";
 import { env } from "../env";
 
 export default function Login() {

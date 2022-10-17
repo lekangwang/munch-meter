@@ -15,7 +15,8 @@ export default function App() {
   return (
     <Provider store={store}>
       {/* <ModalTest></ModalTest> */}
-      <Login></Login>
+      {/* <Login></Login> */}
+      <Register></Register>
     </Provider>
   );
 }
